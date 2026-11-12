@@ -1,4 +1,31 @@
+function startLosoulafm () {
+	
+}
+function panic (message: string) {
+    music.play(music.createSoundEffect(WaveShape.Square, 5000, 5000, 255, 255, 5000, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.LoopingInBackground)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Food)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.MiniMenu)
+    scene.setBackgroundImage(img`
+        . 
+        `)
+    scene.setBackgroundColor(0)
+    spriteutils.setConsoleOverlay(true)
+    console.log("An error has occurred.")
+    console.log(createBorderString(message.length))
+    console.log(message)
+    console.log(createBorderString(message.length))
+    pauseUntil(() => false)
+}
 function MyBootMan () {
+    class bootOption {
+        name: string
+        executable: Function
+    }
+usernames = ["root"]
+    currentUsername = usernames[currentUser]
     bootMenu = miniMenu.createMenu(
     miniMenu.createMenuItem("SDA1: \"LOSOULAFM\""),
     miniMenu.createMenuItem("SDB1: \"Recovery Medium\"")
@@ -15,12 +42,19 @@ function MyBootMan () {
     miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Padding, 5)
     miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Padding, 4)
     miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Background, 6)
+    miniMenu.onButtonPressed(bootMenu, miniMenu.Button.A, function (selection, selectedIndex) {
+    	
+    })
+}
+function createBorderString (length: number) {
+    return "-------------------------"
 }
 let bootMenu: Sprite = null
 let currentUser = 0
-let usernames = ["root"]
-let currentUsername = usernames[currentUser]
+let currentUsername = ""
+let usernames: string[] = []
+let bootOptions: number[] = []
 MyBootMan()
 game.onUpdate(function () {
-	
+    currentUsername = usernames[currentUser]
 })
