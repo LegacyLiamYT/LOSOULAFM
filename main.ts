@@ -17,7 +17,10 @@ function MyBootMan () {
     miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Background, 6)
 }
 let bootMenu: Sprite = null
-let usernames = {
-    0: "root"
-}
+let currentUser = 0
+let usernames = ["root"]
+let currentUsername = usernames[currentUser]
 MyBootMan()
+game.onUpdate(function () {
+	
+})
