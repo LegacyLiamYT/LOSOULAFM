@@ -1,3 +1,33 @@
+function Boot_OR_Recover () {
+    class bootOption {
+        name: string
+        executable: Function
+    }
+usernames = ["root"]
+    currentUsername = usernames[currentUser]
+    bootMenu = miniMenu.createMenu(
+    miniMenu.createMenuItem("Boot Regular", assets.image`Leftarrow`),
+    miniMenu.createMenuItem("Recover Data", assets.image`Warn-White`)
+    )
+    miniMenu.setTitle(bootMenu, "Choose a boot option")
+    miniMenu.setDimensions(bootMenu, scene.screenWidth(), scene.screenHeight())
+    bootMenu.top = 0
+    bootMenu.left = 0
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.All, miniMenu.StyleProperty.Background, 4)
+    scene.setBackgroundColor(4)
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.All, miniMenu.StyleProperty.Foreground, 1)
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 7)
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Foreground, 1)
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Padding, 5)
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Padding, 4)
+    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Background, 6)
+    miniMenu.onButtonPressed(bootMenu, miniMenu.Button.A, function (selection, selectedIndex) {
+    	
+    })
+    miniMenu.onButtonPressed(bootMenu, miniMenu.Button.B, function (selection, selectedIndex) {
+        panic("0xFFFFFF")
+    })
+}
 function startLosoulafm () {
 	
 }
@@ -19,33 +49,6 @@ function panic (message: string) {
     console.log(createBorderString(message.length))
     pauseUntil(() => false)
 }
-function MyBootMan () {
-    class bootOption {
-        name: string
-        executable: Function
-    }
-usernames = ["root"]
-    currentUsername = usernames[currentUser]
-    bootMenu = miniMenu.createMenu(
-    miniMenu.createMenuItem("SDA1: \"LOSOULAFM\""),
-    miniMenu.createMenuItem("SDB1: \"Recovery Medium\"")
-    )
-    miniMenu.setTitle(bootMenu, "MyBootMan Boot Menu")
-    miniMenu.setDimensions(bootMenu, scene.screenWidth(), scene.screenHeight())
-    bootMenu.top = 0
-    bootMenu.left = 0
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.All, miniMenu.StyleProperty.Background, 4)
-    scene.setBackgroundColor(4)
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.All, miniMenu.StyleProperty.Foreground, 1)
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 7)
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Foreground, 1)
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Padding, 5)
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Padding, 4)
-    miniMenu.setStyleProperty(bootMenu, miniMenu.StyleKind.Title, miniMenu.StyleProperty.Background, 6)
-    miniMenu.onButtonPressed(bootMenu, miniMenu.Button.A, function (selection, selectedIndex) {
-    	
-    })
-}
 function createBorderString (length: number) {
     return "-------------------------"
 }
@@ -54,7 +57,7 @@ let currentUser = 0
 let currentUsername = ""
 let usernames: string[] = []
 let bootOptions: number[] = []
-MyBootMan()
+Boot_OR_Recover()
 game.onUpdate(function () {
     currentUsername = usernames[currentUser]
 })
